@@ -76,6 +76,11 @@ module.exports = function(grunt) {
       .replace(singleQuoteReg, '\\i'));
   }
 
+  function handlebarsConfig(options)
+  {
+    eval(options.handlebars);
+  }
+
   /**
    * Reads an SVG file and returns an object that contains the name, datauri,
    * prefix, prefixClass, width and height.
@@ -177,8 +182,11 @@ module.exports = function(grunt) {
       banner: '',
       footer: '',
       insertfinalnewline: false,
-      keepSpecialComments: '*'
+      keepSpecialComments: '*',
+      handlebars: '',
     });
+
+    handlebarsConfig(options);
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
